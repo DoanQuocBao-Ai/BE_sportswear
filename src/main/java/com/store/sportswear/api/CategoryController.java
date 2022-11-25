@@ -1,0 +1,36 @@
+package com.store.sportswear.api;
+
+import com.store.sportswear.entity.Category;
+import com.store.sportswear.service.category.CategoryService;
+import com.store.sportswear.shared.ECommerceMessage;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("api/categorys/")
+@RequiredArgsConstructor
+@CrossOrigin
+public class CategoryController {
+
+    private final CategoryService categoryService;
+
+    @GetMapping("getAll")
+    public List<Category> getAll() {
+        return this.categoryService.getAll();
+    }
+
+    @PostMapping("add")
+    public ResponseEntity<?> add(@RequestBody Category category) {
+        this.categoryService.add(category);
+        return ResponseEntity.ok(ECommerceMessage.CATEGORY_NAME_ALREADY_IN_USE);
+    }
+
+    @GetMapping("getByCategoryName")
+    public List<Category> getByCategoryName(String categoryName) {
+        return this.categoryService.getByCategoryName(categoryName);
+    }
+
+}
