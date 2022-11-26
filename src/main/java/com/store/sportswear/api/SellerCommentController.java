@@ -20,7 +20,7 @@ public class SellerCommentController {
 
     @PostMapping("add")
     public ResponseEntity<?> add(@RequestBody SellerCommentCreateRequest sellerComment) {
-        sellerCommentService.add(new SellerComment(sellerComment.getTitle(), sellerComment.getBody(), sellerComment.getRating(), new Date()));
+        sellerCommentService.add(new SellerComment(sellerComment.getTitle(), sellerComment.getBody(), new Date()));
         return ResponseEntity.ok(ECommerceMessage.SELLER_COMMENT_CREATED);
     }
 

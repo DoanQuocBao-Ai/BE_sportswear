@@ -21,12 +21,7 @@ public class SellerCommentServiceImpl implements SellerCommentService{
 
     @Override
     public SellerComment add(SellerComment sellerComment) {
-
-        if (sellerComment.getRating() < 1) {
-            return null;
-        } else {
-            return sellerCommentRepository.save(sellerComment);
-        }
+        return sellerCommentRepository.save(sellerComment);
     }
 
     @Override

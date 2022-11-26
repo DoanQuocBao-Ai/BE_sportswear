@@ -22,9 +22,6 @@ public class SellerComment {
     @Column(name = "body")
     private String body;
 
-    @Column(name = "rating")
-    private int rating;
-
     @Column(name = "create_date")
     private Date createDate;
 
@@ -34,10 +31,9 @@ public class SellerComment {
     @ManyToOne
     private Seller seller;
 
-    public SellerComment(String title, String body, int rating, Date createDate) {
+    public SellerComment(String title, String body, Date createDate) {
         this.title = title;
         this.body = body;
-        this.rating = rating;
         this.createDate = createDate;
     }
 }
