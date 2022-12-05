@@ -26,7 +26,7 @@ public class SellerComment {
     private Date createDate;
 
     @ManyToOne
-    private User user;
+    private EUser EUser;
 
     @ManyToOne
     private Seller seller;

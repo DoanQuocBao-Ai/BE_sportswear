@@ -1,7 +1,7 @@
 package com.store.sportswear.service;
 
+import com.store.sportswear.entity.EUser;
 import com.store.sportswear.entity.PromoCode;
-import com.store.sportswear.entity.User;
 import com.store.sportswear.exception.NotFoundException;
 import com.store.sportswear.repository.PromoCodeRepository;
 import com.store.sportswear.request.PromoCodeCreateRequest;
@@ -27,7 +27,7 @@ public class PromoCodeServiceImpl implements PromoCodeService{
 
     @Override
     public String createPromoCode(PromoCodeCreateRequest promoCodeRequest) {
-        Optional<User> user = Optional.ofNullable(userService.getById(promoCodeRequest.getUserId()));
+        Optional<EUser> user = Optional.ofNullable(userService.getById(promoCodeRequest.getUserId()));
 
         if (user.isPresent()) {
             PromoCode promoCode = new PromoCode();
@@ -35,7 +35,7 @@ public class PromoCodeServiceImpl implements PromoCodeService{
             promoCode.setCreateDate(new Date());
             promoCode.setAmount(promoCodeRequest.getAmount());
             promoCode.setExpirationDate(new Date(promoCodeRequest.getYear(), promoCodeRequest.getMonth(), promoCodeRequest.getDate()));
-            promoCode.setUser(user.get());
+            promoCode.setEUser(user.get());
 
             promoCodeRepository.save(promoCode);
             userService.add(user.get());

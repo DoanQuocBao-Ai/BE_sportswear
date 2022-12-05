@@ -1,12 +1,11 @@
 package com.store.sportswear.service.user;
 
 import com.store.sportswear.dto.viewDto.UserViewDto;
-import com.store.sportswear.entity.User;
+import com.store.sportswear.entity.EUser;
 import com.store.sportswear.exception.NotFoundException;
 import com.store.sportswear.repository.UserRepository;
 import com.store.sportswear.request.UserDeleteRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,27 +20,27 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public User add(User userCreateDto) {
-         this.userRepository.save(new User(userCreateDto.getUserName(),
-                userCreateDto.getPassword(), userCreateDto.getEMail(), userCreateDto.getUserCreateDate(), userCreateDto.isNotificationPermission()));
-        return userCreateDto;
+    public EUser add(EUser EUserCreateDto) {
+         this.userRepository.save(new EUser(EUserCreateDto.getUserName(),
+                EUserCreateDto.getPassword(), EUserCreateDto.getEMail(), EUserCreateDto.getUserCreateDate(), EUserCreateDto.isNotificationPermission()));
+        return EUserCreateDto;
     }
 
     @Override
-    public List<User> getAll() {
-        final List<User> users = this.userRepository.findAll();
-        return users;
+    public List<EUser> getAll() {
+        final List<EUser> EUsers = this.userRepository.findAll();
+        return EUsers;
     }
 
     @Override
-    public User getById(int id) {
+    public EUser getById(int id) {
         return userRepository.findById(id).orElseThrow(() -> new NotFoundException("user couldn't be found by following id: " + id));
     }
 
     @Override
-    public List<User> slice(Pageable pageable) {
-        final List<User> users = this.userRepository.findAll(pageable).stream().collect(Collectors.toList());
-        return users;
+    public List<EUser> slice(Pageable pageable) {
+        final List<EUser> EUsers = this.userRepository.findAll(pageable).stream().collect(Collectors.toList());
+        return EUsers;
     }
 
     @Override
@@ -56,24 +55,24 @@ public class UserServiceImpl implements UserService {
     }
 
    @Override
-    public User getByUserName(String userName) {
+    public EUser getByUserName(String userName) {
         return userRepository.findByUserName(userName);
    }
 
     @Override
     public void authDeleteByUser(UserDeleteRequest userDeleteRequest) {
-        User user = userRepository.findByEMail(userDeleteRequest.getEMail());
-        userRepository.deleteById(user.getId());
+        EUser EUser = userRepository.findByEMail(userDeleteRequest.getEMail());
+        userRepository.deleteById(EUser.getId());
     }
 
     @Override
-    public User findByEMail(String eMail) {
+    public EUser findByEMail(String eMail) {
         return userRepository.findByEMail(eMail);
     }
 
     @Override
     public void updateByUserName(int userId, String userName) {
-        Optional<User> user = userRepository.findById(userId);
+        Optional<EUser> user = userRepository.findById(userId);
 
         if (user.isPresent()) {
             user.get().setUserName(userName);
@@ -83,7 +82,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateByNotificationPermission(int userId, boolean permission) {
-        Optional<User> user = userRepository.findById(userId);
+        Optional<EUser> user = userRepository.findById(userId);
 
         if (user.isPresent()) {
             user.get().setNotificationPermission(permission);

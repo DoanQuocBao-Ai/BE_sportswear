@@ -29,5 +29,5 @@ public class PromoCode {
     private Date expirationDate;
 
     @ManyToOne
-    private User user;
+    private EUser EUser;
 }

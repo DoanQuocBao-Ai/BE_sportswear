@@ -1,7 +1,7 @@
 package com.store.sportswear.service;
 
 import com.store.sportswear.entity.Address;
-import com.store.sportswear.entity.User;
+import com.store.sportswear.entity.EUser;
 import com.store.sportswear.repository.AddressRepository;
 import com.store.sportswear.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class AddressServiceImpl implements AddressService{
 
     @Override
     public List<Address> getAddressByUserId(int userId) {
-        Optional<User> user = Optional.ofNullable(userService.getById(userId));
+        Optional<EUser> user = Optional.ofNullable(userService.getById(userId));
         List<Address> addressesResponse = new ArrayList<>();
         
         if (user.isPresent()) {

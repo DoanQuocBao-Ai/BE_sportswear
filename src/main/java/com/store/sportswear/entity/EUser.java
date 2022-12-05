@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "USERS")
-public class User {
+public class EUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +32,10 @@ public class User {
     @Column(name = "email")
     private String eMail;
 
-    @Column(name = "createDate")
+    @Column(name = "create_date")
     private Date userCreateDate;
 
-    @Column(name = "notificationPermission")
+    @Column(name = "notification_permission")
     private boolean notificationPermission = true;
 
     @OneToMany
@@ -53,7 +53,7 @@ public class User {
     @OneToMany
     private List<PromoCode> promoCode;
 
-    public User(String userName, String password, String eMail, Date userCreateDate, boolean notificationPermission) {
+    public EUser(String userName, String password, String eMail, Date userCreateDate, boolean notificationPermission) {
         this.userName = userName;
         this.password = password;
         this.eMail = eMail;

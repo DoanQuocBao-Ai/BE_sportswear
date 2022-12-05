@@ -1,6 +1,6 @@
 package com.store.sportswear.dto.viewDto;
 
-import com.store.sportswear.entity.User;
+import com.store.sportswear.entity.EUser;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -20,8 +20,8 @@ public class UserViewDto implements Serializable {
         this.password = password;
     }
 
-    public static UserViewDto of(User user) {
-        return new UserViewDto(user.getUserName(), user.getPassword() ,user.getEMail());
+    public static UserViewDto of(EUser EUser) {
+        return new UserViewDto(EUser.getUserName(), EUser.getPassword() , EUser.getEMail());
     }
 
 }

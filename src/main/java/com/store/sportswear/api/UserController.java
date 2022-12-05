@@ -1,7 +1,7 @@
 package com.store.sportswear.api;
 
 import com.store.sportswear.dto.viewDto.UserViewDto;
-import com.store.sportswear.entity.User;
+import com.store.sportswear.entity.EUser;
 import com.store.sportswear.request.UserNameUpdateRequest;
 import com.store.sportswear.request.UserUpdateNotificationPermissionRequest;
 import com.store.sportswear.service.user.UserService;
@@ -23,26 +23,26 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("add")
-    public ResponseEntity<?> add(@RequestBody @Valid User userCreateDto) {
-        this.userService.add(userCreateDto);
+    public ResponseEntity<?> add(@RequestBody @Valid EUser EUserCreateDto) {
+        this.userService.add(EUserCreateDto);
         return ResponseEntity.ok(new GenericResponse("User Created."));
     }
 
     @GetMapping("getAll")
-    public ResponseEntity<List<User>> getAll() {
-       List<User> users = this.userService.getAll();
-       return ResponseEntity.ok(users);
+    public ResponseEntity<List<EUser>> getAll() {
+       List<EUser> EUsers = this.userService.getAll();
+       return ResponseEntity.ok(EUsers);
     }
 
     @GetMapping("getById/{id}")
-    public User getById(@PathVariable int id) {
+    public EUser getById(@PathVariable int id) {
         return this.userService.getById(id);
     }
 
     @GetMapping("slice")
-    public ResponseEntity<List<User>> slice(Pageable pageable) {
-        List<User> users = this.userService.slice(pageable);
-        return ResponseEntity.ok(users);
+    public ResponseEntity<List<EUser>> slice(Pageable pageable) {
+        List<EUser> EUsers = this.userService.slice(pageable);
+        return ResponseEntity.ok(EUsers);
     }
 
     @DeleteMapping("delete")

@@ -41,5 +41,5 @@ public class ConfirmedOrder {
     private Seller seller;
 
     @ManyToOne
-    private User user;
+    private EUser EUser;
 }

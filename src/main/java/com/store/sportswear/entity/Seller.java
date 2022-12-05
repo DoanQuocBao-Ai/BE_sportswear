@@ -20,10 +20,10 @@ public class Seller {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "profilePictureUrl")
+    @Column(name = "profile_picture_url")
     private String profilePictureUrl;
 
-    @Column(name = "eMail")
+    @Column(name = "e_mail")
     private String eMail;
 
     @Column(name = "create_date")

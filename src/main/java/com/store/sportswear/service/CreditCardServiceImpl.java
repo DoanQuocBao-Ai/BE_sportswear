@@ -1,7 +1,7 @@
 package com.store.sportswear.service;
 
 import com.store.sportswear.entity.CreditCard;
-import com.store.sportswear.entity.User;
+import com.store.sportswear.entity.EUser;
 import com.store.sportswear.repository.CreditCardRepository;
 import com.store.sportswear.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class CreditCardServiceImpl implements CreditCardService{
 
     @Override
     public List<CreditCard> getCreditCardByUserId(int id) {
-        Optional<User> user = Optional.ofNullable(userService.getById(id));
+        Optional<EUser> user = Optional.ofNullable(userService.getById(id));
 
         if (user.isPresent()) {
             CreditCard creditCard = user.get().getCreditCard();

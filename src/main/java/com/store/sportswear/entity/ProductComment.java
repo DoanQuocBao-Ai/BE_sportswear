@@ -29,7 +29,7 @@ public class ProductComment {
     private Date createDate;
 
     @ManyToOne
-    private User user;
+    private EUser EUser;
 
     @ManyToOne
     private Product product;

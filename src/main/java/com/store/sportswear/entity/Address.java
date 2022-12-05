@@ -28,5 +28,5 @@ public class Address {
     private String street;
 
     @ManyToOne
-    private User user;
+    private EUser EUser;
 }

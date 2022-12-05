@@ -1,6 +1,6 @@
 package com.store.sportswear.security;
 
-import com.store.sportswear.entity.User;
+import com.store.sportswear.entity.EUser;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,10 +29,10 @@ public class JwtUserDetails implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static JwtUserDetails create(User user) {
+    public static JwtUserDetails create(EUser EUser) {
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
         grantedAuthorityList.add(new SimpleGrantedAuthority("user"));
-        return new JwtUserDetails(user.getId(), user.getUserName(), user.getPassword(), user.getEMail(), grantedAuthorityList);
+        return new JwtUserDetails(EUser.getId(), EUser.getUserName(), EUser.getPassword(), EUser.getEMail(), grantedAuthorityList);
     }
 
     @Override

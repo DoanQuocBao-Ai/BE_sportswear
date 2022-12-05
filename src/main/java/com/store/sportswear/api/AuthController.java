@@ -1,6 +1,6 @@
 package com.store.sportswear.api;
 
-import com.store.sportswear.entity.User;
+import com.store.sportswear.entity.EUser;
 import com.store.sportswear.request.UserCreateRequest;
 import com.store.sportswear.request.UserDeleteRequest;
 import com.store.sportswear.request.UserLoginRequest;
@@ -51,8 +51,8 @@ public class AuthController {
         Authentication auth = authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(auth);
         String jwtToken = jwtTokenProvider.generateJwtToken(auth);
-        User user = userService.getByUserName(loginRequest.getUserName());
-        sendEmailService.sendEmails(user.getEMail(), ECommerceMessage.LOGIN_BODY, ECommerceMessage.LOGIN_TOPIC);
+        EUser EUser = userService.getByUserName(loginRequest.getUserName());
+        sendEmailService.sendEmails(EUser.getEMail(), ECommerceMessage.LOGIN_BODY, ECommerceMessage.LOGIN_TOPIC);
         return "Bearer " + jwtToken;
     }
 
@@ -62,12 +62,12 @@ public class AuthController {
             return new ResponseEntity<>(ECommerceMessage.EMAIL_ALREADY_IN_USE, HttpStatus.BAD_REQUEST);
         }
 
-        User newUser = new User();
-        newUser.setUserName(user.getUserName());
-        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        newUser.setEMail(user.getEMail());
-        newUser.setUserCreateDate(new Date());
-        userService.add(newUser);
+        EUser newEUser = new EUser();
+        newEUser.setUserName(user.getUserName());
+        newEUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newEUser.setEMail(user.getEMail());
+        newEUser.setUserCreateDate(new Date());
+        userService.add(newEUser);
         sendEmailService.sendEmails(String.valueOf(user.getEMail()), ECommerceMessage.REGISTER_BODY, ECommerceMessage.REGISTER_TOPIC + ECommerceMessage.REGISTER_TOPIC_EMOJI);
         return new ResponseEntity<>(ECommerceMessage.USER_CREATED, HttpStatus.CREATED);
     }
